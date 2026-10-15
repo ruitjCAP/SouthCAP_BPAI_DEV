@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "NB_SS_ASSET_SENDYS_BALANCETE_MMYYYYY_V0",
+    "description": "New notebook"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5dc8fdb4-6209-854d-4d58-4ec864cf2bfb"
+  }
+}

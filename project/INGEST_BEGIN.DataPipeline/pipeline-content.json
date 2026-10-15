@@ -1,0 +1,86 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "c4a1d20c-01d2-89d0-464f-23d748b503bb",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "DRY_RUN": {
+              "value": true,
+              "type": "bool"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "NB_MASTER",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@json(activity('NB_MASTER').output.result.exitValue).trabalho",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Switch",
+              "typeProperties": {
+                "on": {
+                  "value": "@item().tipo",
+                  "type": "Expression"
+                },
+                "cases": [
+                  {
+                    "value": "BALANCETE",
+                    "activities": [
+                      {
+                        "type": "ExecutePipeline",
+                        "typeProperties": {
+                          "pipeline": {
+                            "referenceName": "f2f7192a-86a9-b733-4951-e1498ce04e84",
+                            "type": "PipelineReference"
+                          },
+                          "parameters": {
+                            "ITEM": "@string(item())"
+                          },
+                          "waitOnCompletion": true
+                        },
+                        "policy": {
+                          "secureInput": false
+                        },
+                        "name": "Invoke PL_LOAD_BALANCETE",
+                        "dependsOn": []
+                      }
+                    ]
+                  }
+                ],
+                "defaultActivities": []
+              },
+              "name": "SWITCH_MASTER",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "FOREACH_MASTER",
+        "dependsOn": [
+          {
+            "activity": "NB_MASTER",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

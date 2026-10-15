@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "Pipeline_Inputs_Sendys_PM"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5fc84b9f-160d-b288-422c-db12ad4ec6bf"
+  }
+}

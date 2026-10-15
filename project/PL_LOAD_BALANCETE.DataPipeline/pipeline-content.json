@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "1ac2ade4-e756-a760-43e9-035575d91303",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "ITEM_JSON": {
+              "value": "{@pipeline().parameters.ITEM}",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "NB_TESTE_LOAD",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "ITEM": {
+        "type": "string"
+      }
+    }
+  }
+}

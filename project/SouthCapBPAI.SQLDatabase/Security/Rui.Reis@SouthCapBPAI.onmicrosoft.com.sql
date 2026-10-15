@@ -1,0 +1,6 @@
+CREATE USER [Rui.Reis@SouthCapBPAI.onmicrosoft.com]
+    WITH SID = 0x907F7B8CE9F22B488971A61FD9F1991A, TYPE = E;
+
+
+GO
+
